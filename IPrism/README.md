@@ -72,13 +72,14 @@ $ python 2xpr.py PRISMRESULTFOLDER/
 A sample command line run might look like: 
 
 ```r
-$ python IPrism.py -S les_3.xlsx -c /home/rogia/FR_genome/Data/cdhit/20170707_OrthologComparison_Nares+Modern_Nostoc+GCF_20025-70.clstr -a attr.xlsx /home/rogia/FR_genome/mini_data
+$ python IPrism.py -S les_3 -c /home/rogia/FR_genome/Data/cdhit/20170707_OrthologComparison_Nares+Modern_Nostoc+GCF_20025-70.clstr -a attr /home/rogia/FR_genome/mini_data
 ```
 
 To see a detailed description of all command line options, do:
 
 ```r
 $ python IPrism.py -h
+
 
 
 usage = """IPrism For the interpretation and representation of the prism results.
@@ -90,10 +91,11 @@ Usage:
 Options:
   -h --help     Show this screen
   --version     Version 0.0
-  -S XLSXFILE1 --table XLSXFILE1    Name of Statistical table(output)
+  -S FILE1 --table FILE1    prefix of Name of Statistical table(output)(prefix will be use to generate prefix.tsv and prefix.xlsx)
   -c CLSTRFILE --chr CLSTRFILE     cd-hit results file
-  -a XLSXFILE2 --attr XLSXFILE2    Name of the attributes file. This file is used for cytoscape.(output)
+  -a FILE2 --attr FILE2    prefix of Name of the attributes file. This file is used for cytoscape.(output)(prefix will be use to generate prefix.tsv and prefix.xlsx)
 """
+
 ```
 
 
@@ -134,7 +136,7 @@ The directory contains three files:
          all the sequences are identified by the name of the sample.
 
 #### OUTPUT DESCRIPTION
-The files  obtained at the output are excel files:
+The files  obtained at the output are excel and tsv files:
 
 1. The first pecified py -S option: Contains The number of clusters of each type per genome
 2. The another one specified by -a option : It' s attributes file.
