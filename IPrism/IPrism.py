@@ -11,9 +11,9 @@ Usage:
 Options:
   -h --help     Show this screen
   --version     Version 0.0
-  -S XLSXFILE1 --table XLSXFILE1    Name of Statistical table(output)
+  -S FILE1 --table FILE1    prefix of Name of Statistical table(output)(prefix will be use to generate prefix.tsv and prefix.xlsx)
   -c CLSTRFILE --chr CLSTRFILE     cd-hit results file
-  -a XLSXFILE2 --attr XLSXFILE2    Name of the attributes file. This file is used for cytoscape.(output)
+  -a FILE2 --attr FILE2    prefix of Name of the attributes file. This file is used for cytoscape.(output)(prefix will be use to generate prefix.tsv and prefix.xlsx)
 """
 
 if __name__ == '__main__':
@@ -24,7 +24,8 @@ if __name__ == '__main__':
         result = compares_organism_considering_clusters_families(all_org)
 
         if args['--table']:
-            display_test(result, args['--table'])
+            display_test(result, args['--table'] + ".xlsx")
+            results_in_tsv_file(result, args['--table'] + ".tsv")
 
         if args['--chr']:
             for org in all_org:
@@ -45,4 +46,5 @@ if __name__ == '__main__':
         del (nodes[cle])
 
     if args['--attr']:
-        display_test(nodes, args['--attr'])  # 20170707_OrthologComparison_Nares+Modern_Nostoc+GCF_20025-70%_cluster_mapping_Statistiques.xls'
+        display_test(nodes, args['--attr'] +".xlsx")  # 20170707_OrthologComparison_Nares+Modern_Nostoc+GCF_20025-70%_cluster_mapping_Statistiques.xls'
+        results_in_tsv_file(nodes, args['--attr'] +".tsv")
