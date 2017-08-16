@@ -49,3 +49,4 @@ Two types of files are obtained at the output:
 1. .clstr file : Contains the list of all found genes groups, the name of the pathways to which they belong, the density of the pathways and that of the cluster
 2. .xlsx : Contains statistics on pathways and brenda enzymes found in genomes.
 
+NB: Pour des quelconques tests preliminaires, vous pouvez utiliser le fichier de sequences brenda: `/lustre4/CHUdeQuebec/nne-790-ad/projects/header_modif+NDn_BRENDA_sequences.fasta`
