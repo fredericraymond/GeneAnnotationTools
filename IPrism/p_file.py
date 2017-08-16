@@ -329,3 +329,26 @@ def display_test(test_result, f_name):
         feuil1.write(ligne, col, cle)
 
     book.save(f_name)
+
+
+def results_in_tsv_file(test_result, f_name):
+    with open(f_name, "w") as f:
+        sample = test_result.keys()
+        sample.insert(0, "FEATURES")
+        print sample
+        f.write("\t".join(sample))
+        f.write("\n")
+        keys_list = []
+        for cle in test_result.values():
+            keys_list = list(set(cle.keys() + keys_list))
+        for fea in keys_list:
+            cpt = [fea]
+            for cle in test_result.keys():
+                if fea in test_result[cle]:
+                    content = test_result[cle][fea]
+
+                else:
+                    content = 0
+                cpt .append(str(content))
+            f.write("\t".join(cpt))
+            f.write("\n")
