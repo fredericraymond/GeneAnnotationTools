@@ -70,6 +70,8 @@ if __name__ == '__main__':
     print " writing stats file ...."
     draw_table(bgd, "Pathways.xls")
     add_pathways_length("Pathways.xls", group)
+    results_in_tsv_file(bgd, "Pathways.xls")
     draw_table(abS, "enzymes.xls")
+    results_in_tsv_file(abS, "enzymes.tsv")
 
 
