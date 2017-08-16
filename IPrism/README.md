@@ -79,7 +79,23 @@ To see a detailed description of all command line options, do:
 
 ```r
 $ python IPrism.py -h
+
+
+usage = """IPrism For the interpretation and representation of the prism results.
+
+Usage:
+  IPrism.py [options] <inputfolder>
+
+
+Options:
+  -h --help     Show this screen
+  --version     Version 0.0
+  -S XLSXFILE1 --table XLSXFILE1    Name of Statistical table(output)
+  -c CLSTRFILE --chr CLSTRFILE     cd-hit results file
+  -a XLSXFILE2 --attr XLSXFILE2    Name of the attributes file. This file is used for cytoscape.(output)
+"""
 ```
+
 
 + **Step 3: Create the graph with cytoscape**
     
