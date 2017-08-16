@@ -2,7 +2,6 @@ import sys
 import csv
 import collections
 from xlwt import Workbook
-import os
 import glob
 
 
@@ -96,6 +95,29 @@ def draw_table(test_result, f_name):
     book.save(f_name)
 
 
+def results_in_tsv_file(test_result, f_name):
+    with open(f_name, "w") as f:
+        sample = test_result.keys()
+        sample.insert(0, "FEATURES")
+        print sample
+        f.write("\t".join(sample))
+        f.write("\n")
+        keys_list = []
+        for cle in test_result.values():
+            keys_list = list(set(cle.keys() + keys_list))
+        for fea in keys_list:
+            cpt = [fea]
+            for cle in test_result.keys():
+                if fea in test_result[cle]:
+                    content = test_result[cle][fea]
+
+                else:
+                    content = 0
+                cpt .append(str(content))
+            f.write("\t".join(cpt))
+            f.write("\n")
+
+
 if __name__ == '__main__':
     lars = collections.defaultdict(dict)
     blr = []
@@ -123,3 +145,4 @@ if __name__ == '__main__':
         lars[str(b.split("/")[-1])] = c_g
     print "draw table...."
     draw_table(lars, "Cog_Count.xls")
+    results_in_tsv_file(lars, "cog_count.tsv")
