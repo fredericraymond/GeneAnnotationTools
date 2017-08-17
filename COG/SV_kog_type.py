@@ -120,7 +120,6 @@ def results_in_tsv_file(test_result, f_name):
 
 if __name__ == '__main__':
     lars = collections.defaultdict(dict)
-    blr = []
     # Load cogs ...
     tab = load_cognames2003_2004_csv("cog2003-2014.csv")
     for b in glob.glob(sys.argv[1] + "/*"):
