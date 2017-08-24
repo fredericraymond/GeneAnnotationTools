@@ -26,8 +26,7 @@ def parse_prodigal_results(f_name):
 # This function parses cd-hit results...
 
 
-def find_correspondences(f_name,
-                         genes):
+def find_correspondences(f_name):
     correspondences = collections.defaultdict(list)
     with open(f_name, "r") as f:
         line = f.readline()
@@ -37,8 +36,10 @@ def find_correspondences(f_name,
                 cle = []
                 newline = f.readline()
                 while not newline.startswith(">") and newline:
-                    current_name = newline.split(",")[-1].split("...")[0].split(">")[-1]
-                    if current_name in genes:
+                    #current_name = newline.split(",")[-1].split("...")[0].split(">")[-1]
+                    current_name = newline.split(">")[-1].split("|")[0].split("...")[0]
+
+                    if not current_name.startswith("EC"):
                         cle.append(current_name)
                     else:
                         code = newline.split(">EC_")[-1].split("|")[0]
@@ -280,3 +281,19 @@ def results_in_tsv_file(test_result, f_name):
                 cpt.append(str(content))
             f.write("\t".join(cpt))
             f.write("\n")
+
+
+def from_excel_to_tsv(f_name):
+    output_file = ".".join(f_name.split("/")[-1].split(".")[0:-1]) + ".tsv"
+    # ouverture du fichier Excel
+    wb = xlrd.open_workbook(f_name)
+    with open(output_file, "w") as f:
+        for index in range(len(wb.sheet_names())):
+            sheet = wb.sheet_by_index(index)
+            for rownum in range(sheet.nrows):
+                row = sheet.row_values(rownum)
+                line = []
+                for val in row:
+                    line.append(str(val))
+
+                f.write("\t".join(line) + "\n")
