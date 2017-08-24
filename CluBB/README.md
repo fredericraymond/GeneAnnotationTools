@@ -29,6 +29,7 @@ $python CluBB.py -h
 + xwlt
 + pickle
 + docopt
++ xlrd
 
 #### FILES DESCRIPTION
 The directory contains three files:
