@@ -8,7 +8,9 @@ import pickle
 
 def open_link(link):
     try:
-        page = urllib2.urlopen(link)
+        hdr = {'User-Agent': 'Mozilla/5.0'}
+        req = urllib2.Request(link, headers=hdr)
+        page = urllib2.urlopen(req)
         soup = BeautifulSoup(page, "lxml")
     except:
         soup = None
